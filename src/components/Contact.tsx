@@ -54,69 +54,85 @@ const Contact: React.FC = () => {
       <div className={`max-w-6xl mx-auto relative z-10 w-full transition-all duration-1000 ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
       }`}>
-        <div className="mb-12">
-          <h2 className="text-4xl md:text-6xl font-cyber font-black neon-text-magenta glitch" data-text="> CONTACT">
+        <div className="mb-16">
+          <h2 className="text-4xl md:text-6xl font-cyber font-black glitch text-cyber-red" 
+              data-text="> CONTACT"
+              style={{
+                textShadow: '0 0 10px #ff0055, 0 0 20px #ff0055, 0 0 40px #ff0055'
+              }}>
             {'>'} CONTACT
           </h2>
-          <div className="h-1 w-32 bg-cyber-secondary mt-4" style={{
-            boxShadow: '0 0 10px #f0f, 0 0 20px #f0f'
+          <div className="h-1 w-32 bg-gradient-to-r from-cyber-red via-cyber-pink to-cyber-purple mt-4" style={{
+            boxShadow: '0 0 10px #ff0055, 0 0 20px #ff10f0'
           }}></div>
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Contact Information */}
-          <div className="space-y-6">
-            <div className="bg-cyber-card/50 neon-border backdrop-blur-sm p-6">
-              <h3 className="text-xl font-cyber font-bold text-cyber-primary mb-6 flex items-center">
-                <span className="text-cyber-secondary mr-2">{'>'}</span>
+          <div className="space-y-8">
+            <div className="bg-cyber-card/50 backdrop-blur-sm p-8 border-2 border-cyber-green/50 hover:border-cyber-green glitch-hover"
+                 style={{
+                   boxShadow: 'inset 0 0 20px rgba(0, 255, 65, 0.1), 0 0 20px rgba(0, 255, 65, 0.2)'
+                 }}>
+              <h3 className="text-xl font-cyber font-bold text-cyber-green mb-8 flex items-center"
+                  style={{
+                    textShadow: '0 0 10px #00ff41, 0 0 20px #00ff41'
+                  }}>
+                <span className="text-cyber-yellow mr-2">{'>'}</span>
                 TRANSMISSION_CHANNELS
               </h3>
               
-              <div className="space-y-4">
+              <div className="space-y-6">
                 <div className="flex items-start">
-                  <span className="text-cyber-secondary mr-3 font-mono">{'>'}</span>
+                  <span className="text-cyber-yellow mr-3 font-mono text-lg">{'>'}</span>
                   <div>
-                    <p className="font-mono text-sm text-cyber-primary/60">EMAIL</p>
-                    <p className="font-mono text-cyber-primary">john.doe@cybernet.void</p>
+                    <p className="font-mono text-sm text-cyber-primary/60 mb-1">EMAIL</p>
+                    <p className="font-mono text-cyber-green">john.doe@cybernet.void</p>
                   </div>
                 </div>
                 
                 <div className="flex items-start">
-                  <span className="text-cyber-secondary mr-3 font-mono">{'>'}</span>
+                  <span className="text-cyber-yellow mr-3 font-mono text-lg">{'>'}</span>
                   <div>
-                    <p className="font-mono text-sm text-cyber-primary/60">LOCATION</p>
-                    <p className="font-mono text-cyber-primary">Neo Tokyo, Sector 7</p>
+                    <p className="font-mono text-sm text-cyber-primary/60 mb-1">LOCATION</p>
+                    <p className="font-mono text-cyber-green">Neo Tokyo, Sector 7</p>
                   </div>
                 </div>
                 
                 <div className="flex items-start">
-                  <span className="text-cyber-secondary mr-3 font-mono">{'>'}</span>
+                  <span className="text-cyber-yellow mr-3 font-mono text-lg">{'>'}</span>
                   <div>
-                    <p className="font-mono text-sm text-cyber-primary/60">STATUS</p>
-                    <p className="font-mono text-cyber-secondary animate-pulse">ONLINE 24/7</p>
+                    <p className="font-mono text-sm text-cyber-primary/60 mb-1">STATUS</p>
+                    <p className="font-mono text-cyber-yellow animate-pulse">ONLINE 24/7</p>
                   </div>
                 </div>
               </div>
             </div>
             
-            <div className="bg-cyber-card/50 neon-border backdrop-blur-sm p-6">
-              <h3 className="text-xl font-cyber font-bold text-cyber-primary mb-6 flex items-center">
-                <span className="text-cyber-secondary mr-2">{'>'}</span>
+            <div className="bg-cyber-card/50 backdrop-blur-sm p-8 border-2 border-cyber-purple/50 hover:border-cyber-purple glitch-hover"
+                 style={{
+                   boxShadow: 'inset 0 0 20px rgba(176, 0, 255, 0.1), 0 0 20px rgba(176, 0, 255, 0.2)'
+                 }}>
+              <h3 className="text-xl font-cyber font-bold text-cyber-purple mb-8 flex items-center"
+                  style={{
+                    textShadow: '0 0 10px #b000ff, 0 0 20px #b000ff'
+                  }}>
+                <span className="text-cyber-yellow mr-2">{'>'}</span>
                 SOCIAL_LINKS
               </h3>
               
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {[
-                  { name: 'GitHub', handle: '@johndoe' },
-                  { name: 'LinkedIn', handle: '/in/johndoe' },
-                  { name: 'Twitter', handle: '@johndoe_dev' },
-                  { name: 'Discord', handle: 'JohnDoe#0001' }
+                  { name: 'GitHub', handle: '@johndoe', color: 'cyber-green' },
+                  { name: 'LinkedIn', handle: '/in/johndoe', color: 'cyber-primary' },
+                  { name: 'Twitter', handle: '@johndoe_dev', color: 'cyber-yellow' },
+                  { name: 'Discord', handle: 'JohnDoe#0001', color: 'cyber-purple' }
                 ].map((social, index) => (
                   <button
                     key={index}
-                    className="w-full text-left px-4 py-3 font-mono text-sm bg-cyber-primary/5 border border-cyber-primary/30 text-cyber-primary hover:border-cyber-secondary hover:text-cyber-secondary hover:bg-cyber-secondary/5 transition-all duration-300 glitch-hover"
+                    className={`w-full text-left px-4 py-3 font-mono text-sm bg-${social.color}/5 border border-${social.color}/30 text-${social.color} hover:border-${social.color} hover:bg-${social.color}/10 transition-all duration-300 glitch-hover`}
                   >
-                    {'>'} {social.name}: <span className="text-cyber-secondary">{social.handle}</span>
+                    {'>'} {social.name}: <span className="text-cyber-red">{social.handle}</span>
                   </button>
                 ))}
               </div>
@@ -124,15 +140,21 @@ const Contact: React.FC = () => {
           </div>
           
           {/* Contact Form */}
-          <div className="bg-cyber-card/50 neon-border backdrop-blur-sm p-6">
-            <h3 className="text-xl font-cyber font-bold text-cyber-primary mb-6 flex items-center">
-              <span className="text-cyber-secondary mr-2">{'>'}</span>
+          <div className="bg-cyber-card/50 backdrop-blur-sm p-8 border-2 border-cyber-red/50 hover:border-cyber-red glitch-hover"
+               style={{
+                 boxShadow: 'inset 0 0 20px rgba(255, 0, 85, 0.1), 0 0 20px rgba(255, 0, 85, 0.2)'
+               }}>
+            <h3 className="text-xl font-cyber font-bold text-cyber-red mb-8 flex items-center"
+                style={{
+                  textShadow: '0 0 10px #ff0055, 0 0 20px #ff0055'
+                }}>
+              <span className="text-cyber-yellow mr-2">{'>'}</span>
               SEND_MESSAGE
             </h3>
             
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label className="block font-mono text-sm text-cyber-primary/80 mb-2">
+                <label className="block font-mono text-sm text-cyber-yellow/80 mb-2">
                   {'>'} NAME
                 </label>
                 <input
@@ -140,14 +162,14 @@ const Contact: React.FC = () => {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-cyber-darker border border-cyber-primary/30 text-cyber-primary font-mono focus:border-cyber-secondary focus:outline-none transition-all duration-300"
+                  className="w-full px-4 py-3 bg-cyber-darker border border-cyber-green/30 text-cyber-green font-mono focus:border-cyber-green focus:outline-none transition-all duration-300"
                   placeholder="Enter your name"
                   required
                 />
               </div>
               
               <div>
-                <label className="block font-mono text-sm text-cyber-primary/80 mb-2">
+                <label className="block font-mono text-sm text-cyber-yellow/80 mb-2">
                   {'>'} EMAIL
                 </label>
                 <input
@@ -155,14 +177,14 @@ const Contact: React.FC = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-cyber-darker border border-cyber-primary/30 text-cyber-primary font-mono focus:border-cyber-secondary focus:outline-none transition-all duration-300"
+                  className="w-full px-4 py-3 bg-cyber-darker border border-cyber-green/30 text-cyber-green font-mono focus:border-cyber-green focus:outline-none transition-all duration-300"
                   placeholder="your.email@domain.com"
                   required
                 />
               </div>
               
               <div>
-                <label className="block font-mono text-sm text-cyber-primary/80 mb-2">
+                <label className="block font-mono text-sm text-cyber-yellow/80 mb-2">
                   {'>'} MESSAGE
                 </label>
                 <textarea
@@ -170,7 +192,7 @@ const Contact: React.FC = () => {
                   value={formData.message}
                   onChange={handleChange}
                   rows={6}
-                  className="w-full px-4 py-3 bg-cyber-darker border border-cyber-primary/30 text-cyber-primary font-mono focus:border-cyber-secondary focus:outline-none transition-all duration-300 resize-none"
+                  className="w-full px-4 py-3 bg-cyber-darker border border-cyber-green/30 text-cyber-green font-mono focus:border-cyber-green focus:outline-none transition-all duration-300 resize-none"
                   placeholder="Type your message here..."
                   required
                 />
@@ -178,9 +200,9 @@ const Contact: React.FC = () => {
               
               <button
                 type="submit"
-                className="w-full py-3 font-mono text-lg border-2 border-cyber-secondary text-cyber-secondary hover:bg-cyber-secondary/10 transition-all duration-300 glitch-hover"
+                className="w-full py-4 font-mono text-lg border-2 border-cyber-red text-cyber-red hover:bg-cyber-red/10 transition-all duration-300 glitch-hover"
                 style={{
-                  boxShadow: 'inset 0 0 10px rgba(255, 0, 255, 0.4), 0 0 10px rgba(255, 0, 255, 0.4)'
+                  boxShadow: 'inset 0 0 20px rgba(255, 0, 85, 0.3), 0 0 20px rgba(255, 0, 85, 0.3)'
                 }}
               >
                 {'>'} TRANSMIT_MESSAGE
@@ -191,7 +213,9 @@ const Contact: React.FC = () => {
         
         <div className="mt-12 text-center">
           <p className="font-mono text-cyber-primary/60">
-            {'>'} SYSTEM_MESSAGE: <span className="text-cyber-secondary animate-pulse">CONNECTION_ESTABLISHED</span>
+            {'>'} SYSTEM_MESSAGE: <span className="text-cyber-green animate-pulse" style={{
+              textShadow: '0 0 10px #00ff41'
+            }}>CONNECTION_ESTABLISHED</span>
           </p>
         </div>
       </div>

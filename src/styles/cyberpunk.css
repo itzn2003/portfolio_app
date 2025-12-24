@@ -96,12 +96,35 @@
     0 0 40px #ff0;
 }
 
-/* Grid background */
+/* Grid background - FIXED: Uses full opacity cyan so parent opacity controls visibility */
 .cyber-grid {
   background-image: 
-    linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+    linear-gradient(rgb(0, 255, 255) 1px, transparent 0px),
+    linear-gradient(90deg, rgb(0, 255, 255) 1px, transparent 0px);
   background-size: 50px 50px;
+  transition: opacity 0.1s linear;
+}
+
+/* Smooth grid fade in animation */
+@keyframes gridFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+}
+
+/* Smooth overlay fade in */
+@keyframes overlayFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.5;
+  }
 }
 
 /* Holographic effect */
@@ -140,6 +163,20 @@
   animation: fadeInUp 0.8s ease-out;
 }
 
+/* Smooth fade in for backgrounds */
+@keyframes smoothFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.smooth-fade-in {
+  animation: smoothFadeIn 1.5s ease-out forwards;
+}
+
 /* Pulse animation */
 @keyframes pulse {
   0%, 100% {
@@ -152,4 +189,18 @@
 
 .pulse {
   animation: pulse 2s ease-in-out infinite;
+}
+
+/* Gentle grid pulse effect */
+@keyframes gridPulse {
+  0%, 100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.grid-pulse {
+  animation: gridPulse 4s ease-in-out infinite;
 }

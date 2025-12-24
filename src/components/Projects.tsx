@@ -6,6 +6,7 @@ interface Project {
   description: string;
   tech: string[];
   status: string;
+  color: string;
 }
 
 const Projects: React.FC = () => {
@@ -39,23 +40,47 @@ const Projects: React.FC = () => {
       title: 'NEURAL_NETWORK_UI',
       description: 'A cutting-edge neural network visualization tool built with React and D3.js. Features real-time data processing and interactive node manipulation.',
       tech: ['React', 'TypeScript', 'D3.js', 'WebGL'],
-      status: 'ACTIVE'
+      status: 'ACTIVE',
+      color: 'green'
     },
     {
       id: 2,
       title: 'DYSTOPIAN_MARKETPLACE',
       description: 'Decentralized marketplace platform leveraging blockchain technology. Secure transactions in the digital wasteland.',
       tech: ['Next.js', 'Solidity', 'Web3', 'PostgreSQL'],
-      status: 'BETA'
+      status: 'BETA',
+      color: 'yellow'
     },
     {
       id: 3,
       title: 'CYBER_CHAT_PROTOCOL',
       description: 'End-to-end encrypted messaging system with quantum-resistant cryptography. Privacy-first communication for the modern age.',
       tech: ['Node.js', 'Socket.io', 'MongoDB', 'Encryption'],
-      status: 'DEVELOPMENT'
+      status: 'DEVELOPMENT',
+      color: 'red'
     }
   ];
+
+  const getColorClasses = (color: string) => {
+    const colors: Record<string, { border: string; text: string; shadow: string }> = {
+      green: {
+        border: 'border-cyber-green',
+        text: 'text-cyber-green',
+        shadow: '0 0 10px rgba(0, 255, 65, 0.3), 0 0 20px rgba(0, 255, 65, 0.2)'
+      },
+      yellow: {
+        border: 'border-cyber-yellow',
+        text: 'text-cyber-yellow',
+        shadow: '0 0 10px rgba(255, 255, 0, 0.3), 0 0 20px rgba(255, 255, 0, 0.2)'
+      },
+      red: {
+        border: 'border-cyber-red',
+        text: 'text-cyber-red',
+        shadow: '0 0 10px rgba(255, 0, 85, 0.3), 0 0 20px rgba(255, 0, 85, 0.2)'
+      }
+    };
+    return colors[color] || colors.green;
+  };
 
   return (
     <section
@@ -68,69 +93,74 @@ const Projects: React.FC = () => {
       <div className={`max-w-7xl mx-auto relative z-10 w-full transition-all duration-1000 ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
       }`}>
-        <div className="mb-12">
-          <h2 className="text-4xl md:text-6xl font-cyber font-black neon-text glitch" data-text="> PROJECTS">
+        <div className="mb-16">
+          <h2 className="text-4xl md:text-6xl font-cyber font-black glitch text-cyber-green" 
+              data-text="> PROJECTS"
+              style={{
+                textShadow: '0 0 10px #00ff41, 0 0 20px #00ff41, 0 0 40px #00ff41'
+              }}>
             {'>'} PROJECTS
           </h2>
-          <div className="h-1 w-32 bg-cyber-primary mt-4" style={{
-            boxShadow: '0 0 10px #0ff, 0 0 20px #0ff'
+          <div className="h-1 w-32 bg-gradient-to-r from-cyber-green via-cyber-primary to-cyber-yellow mt-4" style={{
+            boxShadow: '0 0 10px #00ff41, 0 0 20px #0ff'
           }}></div>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, index) => (
-            <div
-              key={project.id}
-              className={`bg-cyber-card/50 neon-border backdrop-blur-sm p-6 transition-all duration-500 glitch-hover hover:scale-105 ${
-                isVisible ? 'opacity-100' : 'opacity-0'
-              }`}
-              style={{
-                transitionDelay: `${index * 150}ms`
-              }}
-            >
-              <div className="flex justify-between items-start mb-4">
-                <h3 className="text-xl font-cyber font-bold text-cyber-primary glitch" data-text={project.title}>
-                  {project.title}
-                </h3>
-                <span className={`px-2 py-1 text-xs font-mono border ${
-                  project.status === 'ACTIVE' 
-                    ? 'border-cyber-secondary text-cyber-secondary' 
-                    : project.status === 'BETA'
-                    ? 'border-cyber-yellow text-cyber-yellow'
-                    : 'border-cyber-primary text-cyber-primary'
-                } animate-pulse`}>
-                  {project.status}
-                </span>
-              </div>
-              
-              <p className="text-sm font-mono text-cyber-primary/80 mb-4 leading-relaxed">
-                {project.description}
-              </p>
-              
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.tech.map((tech, techIndex) => (
-                  <span
-                    key={techIndex}
-                    className="px-2 py-1 text-xs font-mono bg-cyber-primary/10 border border-cyber-primary/30 text-cyber-primary"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-              
-              <button className="w-full py-2 font-mono text-sm border border-cyber-secondary text-cyber-secondary hover:bg-cyber-secondary/10 transition-all duration-300"
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project, index) => {
+            const colorClasses = getColorClasses(project.color);
+            return (
+              <div
+                key={project.id}
+                className={`bg-cyber-card/50 backdrop-blur-sm p-8 transition-all duration-500 glitch-hover glitch-card hover:scale-105 border-2 ${
+                  isVisible ? 'opacity-100' : 'opacity-0'
+                } ${colorClasses.border}`}
                 style={{
-                  boxShadow: 'inset 0 0 5px rgba(255, 0, 255, 0.3), 0 0 5px rgba(255, 0, 255, 0.3)'
+                  transitionDelay: `${index * 150}ms`,
+                  boxShadow: colorClasses.shadow
                 }}
               >
-                {'>'} VIEW_PROJECT
-              </button>
-            </div>
-          ))}
+                <div className="flex justify-between items-start mb-6">
+                  <h3 className={`text-xl font-cyber font-bold ${colorClasses.text} glitch`} data-text={project.title}>
+                    {project.title}
+                  </h3>
+                  <span className={`px-3 py-1 text-xs font-mono border ${colorClasses.border} ${colorClasses.text} animate-pulse`}>
+                    {project.status}
+                  </span>
+                </div>
+                
+                <p className="text-sm font-mono text-cyber-primary/80 mb-6 leading-relaxed">
+                  {project.description}
+                </p>
+                
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {project.tech.map((tech, techIndex) => (
+                    <span
+                      key={techIndex}
+                      className="px-3 py-1 text-xs font-mono bg-cyber-purple/10 border border-cyber-purple/30 text-cyber-purple glitch-hover"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+                
+                <button className={`w-full py-3 font-mono text-sm border-2 ${colorClasses.border} ${colorClasses.text} hover:bg-${project.color}/10 transition-all duration-300 glitch-hover`}
+                  style={{
+                    boxShadow: `inset ${colorClasses.shadow}, ${colorClasses.shadow}`
+                  }}
+                >
+                  {'>'} VIEW_PROJECT
+                </button>
+              </div>
+            );
+          })}
         </div>
         
-        <div className="mt-12 text-center">
-          <button className="px-8 py-3 font-mono text-lg neon-border bg-transparent text-cyber-primary hover:bg-cyber-primary/10 transition-all duration-300 glitch-hover">
+        <div className="mt-16 text-center">
+          <button className="px-10 py-4 font-mono text-lg border-2 border-cyber-yellow bg-transparent text-cyber-yellow hover:bg-cyber-yellow/10 transition-all duration-300 glitch-hover"
+                  style={{
+                    boxShadow: 'inset 0 0 20px rgba(255, 255, 0, 0.3), 0 0 20px rgba(255, 255, 0, 0.3)'
+                  }}>
             {'>'} LOAD_MORE_PROJECTS
           </button>
         </div>

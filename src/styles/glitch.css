@@ -17,14 +17,14 @@
   left: 2px;
   text-shadow: -2px 0 #f0f;
   clip: rect(24px, 550px, 90px, 0);
-  animation: glitch-anim 3s infinite linear alternate-reverse;
+  animation: glitch-anim 8s infinite linear alternate-reverse;
 }
 
 .glitch::after {
   left: -2px;
   text-shadow: -2px 0 #0ff;
   clip: rect(85px, 550px, 140px, 0);
-  animation: glitch-anim 2s infinite linear alternate-reverse;
+  animation: glitch-anim 6s infinite linear alternate-reverse;
 }
 
 @keyframes glitch-anim {
@@ -93,13 +93,14 @@
   }
 }
 
+/* Random color glitch hover effect */
 .glitch-hover {
   position: relative;
   transition: all 0.3s ease;
 }
 
 .glitch-hover:hover {
-  animation: glitch-shake 0.3s infinite;
+  animation: glitch-shake-random 1s infinite;
 }
 
 .glitch-hover:hover::before {
@@ -109,31 +110,143 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(90deg, transparent, #0ff, transparent);
+  background: linear-gradient(90deg, transparent, currentColor, transparent);
   opacity: 0.1;
-  animation: glitch-scan 0.5s infinite;
+  animation: glitch-scan 1.5s infinite;
 }
 
-@keyframes glitch-shake {
+.glitch-hover:hover::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: transparent;
+  animation: glitch-color-shift 1.2s infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes glitch-shake-random {
   0%, 100% {
     transform: translate(0, 0);
   }
-  25% {
+  10% {
     transform: translate(-2px, 2px);
+    filter: hue-rotate(90deg);
+  }
+  20% {
+    transform: translate(2px, -2px);
+    filter: hue-rotate(180deg);
+  }
+  30% {
+    transform: translate(-2px, -2px);
+    filter: hue-rotate(270deg);
+  }
+  40% {
+    transform: translate(2px, 2px);
+    filter: hue-rotate(45deg);
   }
   50% {
-    transform: translate(2px, -2px);
+    transform: translate(-3px, 1px);
+    filter: hue-rotate(135deg);
   }
-  75% {
-    transform: translate(-2px, -2px);
+  60% {
+    transform: translate(3px, -1px);
+    filter: hue-rotate(225deg);
+  }
+  70% {
+    transform: translate(-1px, -3px);
+    filter: hue-rotate(315deg);
+  }
+  80% {
+    transform: translate(1px, 3px);
+    filter: hue-rotate(60deg);
+  }
+  90% {
+    transform: translate(-2px, 1px);
+    filter: hue-rotate(300deg);
   }
 }
 
 @keyframes glitch-scan {
   0% {
     transform: translateX(-100%);
+    filter: hue-rotate(0deg);
+  }
+  25% {
+    filter: hue-rotate(90deg);
+  }
+  50% {
+    filter: hue-rotate(180deg);
+  }
+  75% {
+    filter: hue-rotate(270deg);
   }
   100% {
     transform: translateX(100%);
+    filter: hue-rotate(360deg);
+  }
+}
+
+@keyframes glitch-color-shift {
+  0% {
+    box-shadow: 
+      2px 2px 0 #ff0055,
+      -2px -2px 0 #00ff41;
+  }
+  25% {
+    box-shadow: 
+      -2px 2px 0 #ffff00,
+      2px -2px 0 #b000ff;
+  }
+  50% {
+    box-shadow: 
+      2px -2px 0 #00ff41,
+      -2px 2px 0 #ff0055;
+  }
+  75% {
+    box-shadow: 
+      -2px -2px 0 #b000ff,
+      2px 2px 0 #ffff00;
+  }
+  100% {
+    box-shadow: 
+      2px 2px 0 #ff0055,
+      -2px -2px 0 #00ff41;
+  }
+}
+
+/* Intense glitch effect for cards */
+.glitch-card {
+  position: relative;
+}
+
+.glitch-card:hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 0, 85, 0.1) 40%,
+    rgba(0, 255, 65, 0.1) 50%,
+    rgba(255, 255, 0, 0.1) 60%,
+    transparent 70%
+  );
+  animation: glitch-sweep 2s infinite;
+  pointer-events: none;
+}
+
+@keyframes glitch-sweep {
+  0% {
+    transform: translateX(-100%) translateY(-100%);
+  }
+  100% {
+    transform: translateX(100%) translateY(100%);
   }
 }

@@ -32,12 +32,17 @@ const Navigation: React.FC = () => {
   };
 
   const navItems = [
-    { id: 'hero', label: '> HOME' },
-    { id: 'about', label: '> ABOUT' },
-    { id: 'projects', label: '> PROJECTS' },
-    { id: 'skills', label: '> SKILLS' },
-    { id: 'contact', label: '> CONTACT' },
+    { id: 'hero', label: '> HOME', color: 'cyber-primary' },
+    { id: 'about', label: '> ABOUT', color: 'cyber-purple' },
+    { id: 'projects', label: '> PROJECTS', color: 'cyber-green' },
+    { id: 'skills', label: '> SKILLS', color: 'cyber-yellow' },
+    { id: 'contact', label: '> CONTACT', color: 'cyber-red' },
   ];
+
+  const getActiveColor = (itemId: string) => {
+    const item = navItems.find(i => i.id === itemId);
+    return item?.color || 'cyber-primary';
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-cyber-darker/90 backdrop-blur-sm border-b border-cyber-primary/30">
@@ -49,16 +54,20 @@ const Navigation: React.FC = () => {
             </span>
           </div>
           <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
+            <div className="ml-10 flex items-baseline space-x-6">
               {navItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
                   className={`font-mono px-3 py-2 text-sm transition-all duration-300 glitch-hover ${
                     activeSection === item.id
-                      ? 'text-cyber-primary neon-text'
-                      : 'text-cyber-primary/60 hover:text-cyber-secondary'
+                      ? `text-${item.color} font-bold`
+                      : `text-${item.color}/60 hover:text-${item.color}`
                   }`}
+                  style={activeSection === item.id ? {
+                    textShadow: `0 0 10px var(--tw-shadow-color), 0 0 20px var(--tw-shadow-color)`,
+                    '--tw-shadow-color': `rgb(var(--${item.color}))`,
+                  } as React.CSSProperties : {}}
                 >
                   {item.label}
                 </button>
