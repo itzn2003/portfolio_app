@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Share Tech Mono', monospace;
+  background-color: #0a0a0f;
+  color: #0ff;
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0f;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0ff;
+  box-shadow: 0 0 10px #0ff;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #f0f;
+  box-shadow: 0 0 10px #f0f;
+}

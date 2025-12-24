@@ -1,0 +1,155 @@
+/* Scanline effect overlay */
+.scanlines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.scanlines::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(0, 255, 255, 0.03) 51%
+  );
+  background-size: 100% 4px;
+  animation: scanline 8s linear infinite;
+}
+
+.scanlines::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: rgba(0, 255, 255, 0.1);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  animation: scanline-move 8s linear infinite;
+}
+
+@keyframes scanline {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 100%;
+  }
+}
+
+@keyframes scanline-move {
+  0% {
+    transform: translateY(-100vh);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+/* Neon border effect */
+.neon-border {
+  border: 2px solid #0ff;
+  box-shadow: 
+    inset 0 0 10px rgba(0, 255, 255, 0.4),
+    0 0 10px rgba(0, 255, 255, 0.4);
+  transition: all 0.3s ease;
+}
+
+.neon-border:hover {
+  border-color: #f0f;
+  box-shadow: 
+    inset 0 0 20px rgba(255, 0, 255, 0.6),
+    0 0 20px rgba(255, 0, 255, 0.6);
+}
+
+/* Neon text effect */
+.neon-text {
+  text-shadow: 
+    0 0 5px #0ff,
+    0 0 10px #0ff,
+    0 0 20px #0ff,
+    0 0 40px #0ff;
+}
+
+.neon-text-magenta {
+  text-shadow: 
+    0 0 5px #f0f,
+    0 0 10px #f0f,
+    0 0 20px #f0f,
+    0 0 40px #f0f;
+}
+
+.neon-text-yellow {
+  text-shadow: 
+    0 0 5px #ff0,
+    0 0 10px #ff0,
+    0 0 20px #ff0,
+    0 0 40px #ff0;
+}
+
+/* Grid background */
+.cyber-grid {
+  background-image: 
+    linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Holographic effect */
+.holographic {
+  background: linear-gradient(
+    45deg,
+    rgba(0, 255, 255, 0.1) 0%,
+    rgba(255, 0, 255, 0.1) 50%,
+    rgba(255, 255, 0, 0.1) 100%
+  );
+  animation: holographic-shift 3s ease-in-out infinite;
+}
+
+@keyframes holographic-shift {
+  0%, 100% {
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    filter: hue-rotate(90deg);
+  }
+}
+
+/* Fade in animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+/* Pulse animation */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.pulse {
+  animation: pulse 2s ease-in-out infinite;
+}

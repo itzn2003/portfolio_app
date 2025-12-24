@@ -1,0 +1,7 @@
+@import './styles/glitch.css';
+@import './styles/cyberpunk.css';
+
+.App {
+  position: relative;
+  min-height: 100vh;
+}
