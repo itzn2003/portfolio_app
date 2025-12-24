@@ -1,29 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
-const Navigation: React.FC = () => {
-  const [activeSection, setActiveSection] = useState('hero');
+interface NavigationProps {
+  currentColor: string;
+  activeSection: string;
+}
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = ['hero', 'about', 'projects', 'skills', 'contact'];
-      const scrollPosition = window.scrollY + 100;
-
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
+const Navigation: React.FC<NavigationProps> = ({ currentColor, activeSection }) => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -32,24 +14,27 @@ const Navigation: React.FC = () => {
   };
 
   const navItems = [
-    { id: 'hero', label: '> HOME', color: 'cyber-primary' },
-    { id: 'about', label: '> ABOUT', color: 'cyber-purple' },
-    { id: 'projects', label: '> PROJECTS', color: 'cyber-green' },
-    { id: 'skills', label: '> SKILLS', color: 'cyber-yellow' },
-    { id: 'contact', label: '> CONTACT', color: 'cyber-red' },
+    { id: 'hero', label: ' <HOME> ', color: '#0ff' },
+    { id: 'about', label: ' <ABOUT> ', color: '#b000ff' },
+    { id: 'projects', label: ' <PROJECTS> ', color: '#ff0055' },
+    { id: 'skills', label: ' <SKILLS> ', color: '#ffff00' },
+    { id: 'contact', label: ' <CONTACT> ', color: '#00ff41' },
   ];
 
-  const getActiveColor = (itemId: string) => {
-    const item = navItems.find(i => i.id === itemId);
-    return item?.color || 'cyber-primary';
-  };
-
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-cyber-darker/90 backdrop-blur-sm border-b border-cyber-primary/30">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-cyber-darker/50 backdrop-blur-md"
+         style={{ 
+           borderColor: `${currentColor}50`,
+           transition: 'border-color 0.5s ease'
+         }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
-            <span className="text-2xl font-cyber font-bold neon-text glitch" data-text="CYBER.DEV">
+            <span className="text-2xl font-cyber font-bold" 
+                  style={{
+                    color: `${currentColor}`,
+                    textShadow: `0 0 10px ${currentColor}, 0 0 20px ${currentColor}`
+                  }}>
               CYBER.DEV
             </span>
           </div>
@@ -59,15 +44,17 @@ const Navigation: React.FC = () => {
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`font-mono px-3 py-2 text-sm transition-all duration-300 glitch-hover ${
-                    activeSection === item.id
-                      ? `text-${item.color} font-bold`
-                      : `text-${item.color}/60 hover:text-${item.color}`
+                  className={`font-mono px-3 py-2 text-sm glitch-hover${
+                    activeSection === item.id ? 'font-bold' : ''
                   }`}
-                  style={activeSection === item.id ? {
-                    textShadow: `0 0 10px var(--tw-shadow-color), 0 0 20px var(--tw-shadow-color)`,
-                    '--tw-shadow-color': `rgb(var(--${item.color}))`,
-                  } as React.CSSProperties : {}}
+                  style={{
+                    color: item.color,
+                    textShadow: activeSection === item.id 
+                      ? `0 0 10px ${item.color}, 0 0 20px ${item.color}` 
+                      : 'none',
+                    opacity: activeSection === item.id ? 1 : 0.6,
+                    transition: 'text-shadow 0.3s ease, opacity 0.3s ease'
+                  }}
                 >
                   {item.label}
                 </button>

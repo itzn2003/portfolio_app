@@ -1,6 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-const Contact: React.FC = () => {
+interface ContactProps {
+  sectionColor: string;
+}
+
+const Contact: React.FC<ContactProps> = ({ sectionColor }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -33,7 +37,6 @@ const Contact: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
-    // Add your form submission logic here
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -55,84 +58,103 @@ const Contact: React.FC = () => {
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
       }`}>
         <div className="mb-16">
-          <h2 className="text-4xl md:text-6xl font-cyber font-black glitch text-cyber-red" 
+          <h2 className="text-4xl md:text-6xl font-cyber font-black glitch" 
               data-text="> CONTACT"
               style={{
-                textShadow: '0 0 10px #ff0055, 0 0 20px #ff0055, 0 0 40px #ff0055'
+                color: sectionColor,
+                textShadow: `0 0 10px ${sectionColor}, 0 0 20px ${sectionColor}, 0 0 40px ${sectionColor}`
               }}>
             {'>'} CONTACT
           </h2>
-          <div className="h-1 w-32 bg-gradient-to-r from-cyber-red via-cyber-pink to-cyber-purple mt-4" style={{
-            boxShadow: '0 0 10px #ff0055, 0 0 20px #ff10f0'
+          <div className="h-1 w-32 mt-4" style={{
+            backgroundColor: sectionColor,
+            boxShadow: `0 0 10px ${sectionColor}, 0 0 20px ${sectionColor}`
           }}></div>
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Contact Information */}
           <div className="space-y-8">
-            <div className="bg-cyber-card/50 backdrop-blur-sm p-8 border-2 border-cyber-green/50 hover:border-cyber-green glitch-hover"
+            <div className="bg-cyber-card/50 backdrop-blur-sm p-8 border-2 glitch-hover"
                  style={{
-                   boxShadow: 'inset 0 0 20px rgba(0, 255, 65, 0.1), 0 0 20px rgba(0, 255, 65, 0.2)'
+                   borderColor: `${sectionColor}80`,
+                   boxShadow: `inset 0 0 20px ${sectionColor}20, 0 0 20px ${sectionColor}30`
                  }}>
-              <h3 className="text-xl font-cyber font-bold text-cyber-green mb-8 flex items-center"
+              <h3 className="text-xl font-cyber font-bold mb-8 flex items-center"
                   style={{
-                    textShadow: '0 0 10px #00ff41, 0 0 20px #00ff41'
+                    color: sectionColor,
+                    textShadow: `0 0 10px ${sectionColor}, 0 0 20px ${sectionColor}`
                   }}>
-                <span className="text-cyber-yellow mr-2">{'>'}</span>
+                <span style={{ color: sectionColor }} className="mr-2">{'>'}</span>
                 TRANSMISSION_CHANNELS
               </h3>
               
               <div className="space-y-6">
                 <div className="flex items-start">
-                  <span className="text-cyber-yellow mr-3 font-mono text-lg">{'>'}</span>
+                  <span className="font-mono text-lg mr-3" style={{ color: sectionColor }}>{'>'}</span>
                   <div>
-                    <p className="font-mono text-sm text-cyber-primary/60 mb-1">EMAIL</p>
-                    <p className="font-mono text-cyber-green">john.doe@cybernet.void</p>
+                    <p className="font-mono text-sm mb-1" style={{ color: `${sectionColor}99` }}>EMAIL</p>
+                    <p className="font-mono" style={{ color: sectionColor }}>zayn.hashim@cybernet.void</p>
                   </div>
                 </div>
                 
                 <div className="flex items-start">
-                  <span className="text-cyber-yellow mr-3 font-mono text-lg">{'>'}</span>
+                  <span className="font-mono text-lg mr-3" style={{ color: sectionColor }}>{'>'}</span>
                   <div>
-                    <p className="font-mono text-sm text-cyber-primary/60 mb-1">LOCATION</p>
-                    <p className="font-mono text-cyber-green">Neo Tokyo, Sector 7</p>
+                    <p className="font-mono text-sm mb-1" style={{ color: `${sectionColor}99` }}>LOCATION</p>
+                    <p className="font-mono" style={{ color: sectionColor }}>Neo Tokyo, Sector 7</p>
                   </div>
                 </div>
                 
                 <div className="flex items-start">
-                  <span className="text-cyber-yellow mr-3 font-mono text-lg">{'>'}</span>
+                  <span className="font-mono text-lg mr-3" style={{ color: sectionColor }}>{'>'}</span>
                   <div>
-                    <p className="font-mono text-sm text-cyber-primary/60 mb-1">STATUS</p>
-                    <p className="font-mono text-cyber-yellow animate-pulse">ONLINE 24/7</p>
+                    <p className="font-mono text-sm mb-1" style={{ color: `${sectionColor}99` }}>STATUS</p>
+                    <p className="font-mono animate-pulse" style={{ color: sectionColor }}>ONLINE 24/7</p>
                   </div>
                 </div>
               </div>
             </div>
             
-            <div className="bg-cyber-card/50 backdrop-blur-sm p-8 border-2 border-cyber-purple/50 hover:border-cyber-purple glitch-hover"
+            <div className="bg-cyber-card/50 backdrop-blur-sm p-8 border-2 glitch-hover"
                  style={{
-                   boxShadow: 'inset 0 0 20px rgba(176, 0, 255, 0.1), 0 0 20px rgba(176, 0, 255, 0.2)'
+                   borderColor: `${sectionColor}80`,
+                   boxShadow: `inset 0 0 20px ${sectionColor}20, 0 0 20px ${sectionColor}30`
                  }}>
-              <h3 className="text-xl font-cyber font-bold text-cyber-purple mb-8 flex items-center"
+              <h3 className="text-xl font-cyber font-bold mb-8 flex items-center"
                   style={{
-                    textShadow: '0 0 10px #b000ff, 0 0 20px #b000ff'
+                    color: sectionColor,
+                    textShadow: `0 0 10px ${sectionColor}, 0 0 20px ${sectionColor}`
                   }}>
-                <span className="text-cyber-yellow mr-2">{'>'}</span>
+                <span style={{ color: sectionColor }} className="mr-2">{'>'}</span>
                 SOCIAL_LINKS
               </h3>
               
               <div className="space-y-4">
                 {[
-                  { name: 'GitHub', handle: '@johndoe', color: 'cyber-green' },
-                  { name: 'LinkedIn', handle: '/in/johndoe', color: 'cyber-primary' },
-                  { name: 'Twitter', handle: '@johndoe_dev', color: 'cyber-yellow' },
-                  { name: 'Discord', handle: 'JohnDoe#0001', color: 'cyber-purple' }
+                  { name: 'GitHub', handle: '@zaynahashim' },
+                  { name: 'LinkedIn', handle: '/in/zaynahashim' },
+                  { name: 'Twitter', handle: '@zayn_hashim' },
+                  { name: 'Discord', handle: 'ZaynHashim#0001' }
                 ].map((social, index) => (
                   <button
                     key={index}
-                    className={`w-full text-left px-4 py-3 font-mono text-sm bg-${social.color}/5 border border-${social.color}/30 text-${social.color} hover:border-${social.color} hover:bg-${social.color}/10 transition-all duration-300 glitch-hover`}
+                    className="w-full text-left px-4 py-3 font-mono text-sm border transition-all duration-300 glitch-hover"
+                    style={{
+                      backgroundColor: `${sectionColor}10`,
+                      borderColor: `${sectionColor}50`,
+                      color: sectionColor
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.borderColor = sectionColor;
+                      e.currentTarget.style.backgroundColor = `${sectionColor}20`;
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.borderColor = `${sectionColor}50`;
+                      e.currentTarget.style.backgroundColor = `${sectionColor}10`;
+                    }}
                   >
-                    {'>'} {social.name}: <span className="text-cyber-red">{social.handle}</span>
+                    {'>'} {social.name}: <span style={{ color: sectionColor }}>{social.handle}</span>
                   </button>
                 ))}
               </div>
@@ -140,21 +162,24 @@ const Contact: React.FC = () => {
           </div>
           
           {/* Contact Form */}
-          <div className="bg-cyber-card/50 backdrop-blur-sm p-8 border-2 border-cyber-red/50 hover:border-cyber-red glitch-hover"
+          <div className="bg-cyber-card/50 backdrop-blur-sm p-8 border-2 glitch-hover"
                style={{
-                 boxShadow: 'inset 0 0 20px rgba(255, 0, 85, 0.1), 0 0 20px rgba(255, 0, 85, 0.2)'
+                 borderColor: `${sectionColor}80`,
+                 boxShadow: `inset 0 0 20px ${sectionColor}20, 0 0 20px ${sectionColor}30`
                }}>
-            <h3 className="text-xl font-cyber font-bold text-cyber-red mb-8 flex items-center"
+            <h3 className="text-xl font-cyber font-bold mb-8 flex items-center"
                 style={{
-                  textShadow: '0 0 10px #ff0055, 0 0 20px #ff0055'
+                  color: sectionColor,
+                  textShadow: `0 0 10px ${sectionColor}, 0 0 20px ${sectionColor}`
                 }}>
-              <span className="text-cyber-yellow mr-2">{'>'}</span>
+              <span style={{ color: sectionColor }} className="mr-2">{'>'}</span>
               SEND_MESSAGE
             </h3>
             
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label className="block font-mono text-sm text-cyber-yellow/80 mb-2">
+                <label className="block font-mono text-sm mb-2"
+                       style={{ color: `${sectionColor}cc` }}>
                   {'>'} NAME
                 </label>
                 <input
@@ -162,14 +187,25 @@ const Contact: React.FC = () => {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-cyber-darker border border-cyber-green/30 text-cyber-green font-mono focus:border-cyber-green focus:outline-none transition-all duration-300"
+                  className="w-full px-4 py-3 bg-cyber-darker border font-mono focus:outline-none transition-all duration-300"
+                  style={{
+                    borderColor: `${sectionColor}50`,
+                    color: sectionColor
+                  }}
+                  onFocus={(e) => {
+                    e.currentTarget.style.borderColor = sectionColor;
+                  }}
+                  onBlur={(e) => {
+                    e.currentTarget.style.borderColor = `${sectionColor}50`;
+                  }}
                   placeholder="Enter your name"
                   required
                 />
               </div>
               
               <div>
-                <label className="block font-mono text-sm text-cyber-yellow/80 mb-2">
+                <label className="block font-mono text-sm mb-2"
+                       style={{ color: `${sectionColor}cc` }}>
                   {'>'} EMAIL
                 </label>
                 <input
@@ -177,14 +213,25 @@ const Contact: React.FC = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-cyber-darker border border-cyber-green/30 text-cyber-green font-mono focus:border-cyber-green focus:outline-none transition-all duration-300"
+                  className="w-full px-4 py-3 bg-cyber-darker border font-mono focus:outline-none transition-all duration-300"
+                  style={{
+                    borderColor: `${sectionColor}50`,
+                    color: sectionColor
+                  }}
+                  onFocus={(e) => {
+                    e.currentTarget.style.borderColor = sectionColor;
+                  }}
+                  onBlur={(e) => {
+                    e.currentTarget.style.borderColor = `${sectionColor}50`;
+                  }}
                   placeholder="your.email@domain.com"
                   required
                 />
               </div>
               
               <div>
-                <label className="block font-mono text-sm text-cyber-yellow/80 mb-2">
+                <label className="block font-mono text-sm mb-2"
+                       style={{ color: `${sectionColor}cc` }}>
                   {'>'} MESSAGE
                 </label>
                 <textarea
@@ -192,7 +239,17 @@ const Contact: React.FC = () => {
                   value={formData.message}
                   onChange={handleChange}
                   rows={6}
-                  className="w-full px-4 py-3 bg-cyber-darker border border-cyber-green/30 text-cyber-green font-mono focus:border-cyber-green focus:outline-none transition-all duration-300 resize-none"
+                  className="w-full px-4 py-3 bg-cyber-darker border font-mono focus:outline-none transition-all duration-300 resize-none"
+                  style={{
+                    borderColor: `${sectionColor}50`,
+                    color: sectionColor
+                  }}
+                  onFocus={(e) => {
+                    e.currentTarget.style.borderColor = sectionColor;
+                  }}
+                  onBlur={(e) => {
+                    e.currentTarget.style.borderColor = `${sectionColor}50`;
+                  }}
                   placeholder="Type your message here..."
                   required
                 />
@@ -200,9 +257,17 @@ const Contact: React.FC = () => {
               
               <button
                 type="submit"
-                className="w-full py-4 font-mono text-lg border-2 border-cyber-red text-cyber-red hover:bg-cyber-red/10 transition-all duration-300 glitch-hover"
+                className="w-full py-4 font-mono text-lg border-2 transition-all duration-300 glitch-hover"
                 style={{
-                  boxShadow: 'inset 0 0 20px rgba(255, 0, 85, 0.3), 0 0 20px rgba(255, 0, 85, 0.3)'
+                  borderColor: sectionColor,
+                  color: sectionColor,
+                  boxShadow: `inset 0 0 20px ${sectionColor}50, 0 0 20px ${sectionColor}50`
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = `${sectionColor}20`;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'transparent';
                 }}
               >
                 {'>'} TRANSMIT_MESSAGE
@@ -212,9 +277,10 @@ const Contact: React.FC = () => {
         </div>
         
         <div className="mt-12 text-center">
-          <p className="font-mono text-cyber-primary/60">
-            {'>'} SYSTEM_MESSAGE: <span className="text-cyber-green animate-pulse" style={{
-              textShadow: '0 0 10px #00ff41'
+          <p className="font-mono" style={{ color: `${sectionColor}99` }}>
+            {'>'} SYSTEM_MESSAGE: <span className="animate-pulse" style={{
+              color: sectionColor,
+              textShadow: `0 0 10px ${sectionColor}`
             }}>CONNECTION_ESTABLISHED</span>
           </p>
         </div>
