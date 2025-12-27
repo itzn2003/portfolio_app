@@ -92,7 +92,7 @@ const Skills: React.FC<SkillsProps> = ({ sectionColor }) => {
                 e.currentTarget.style.borderColor = `${sectionColor}80`;
               }}
             >
-              <h3 className="text-xl font-cyber font-bold mb-8 flex items-center"
+              <h3 className="text-xl font-cyber font-bold mb-8 flex items-center overflow-hidden"
                   style={{ 
                     color: sectionColor,
                     textShadow: `0 0 10px ${sectionColor}, 0 0 20px ${sectionColor}`
@@ -149,7 +149,7 @@ const Skills: React.FC<SkillsProps> = ({ sectionColor }) => {
                 textShadow: `0 0 10px ${sectionColor}, 0 0 20px ${sectionColor}`
               }}>
             <span style={{ color: sectionColor }} className="mr-2">{'>'}</span>
-            ADDITIONAL_PROTOCOLS
+            MORE_PROTOCOLS
           </h3>
           
           <div className="flex flex-wrap gap-4">

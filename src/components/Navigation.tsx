@@ -14,15 +14,15 @@ const Navigation: React.FC<NavigationProps> = ({ currentColor, activeSection }) 
   };
 
   const navItems = [
-    { id: 'hero', label: ' <HOME> ', color: '#0ff' },
-    { id: 'about', label: ' <ABOUT> ', color: '#b000ff' },
-    { id: 'projects', label: ' <PROJECTS> ', color: '#ff0055' },
-    { id: 'skills', label: ' <SKILLS> ', color: '#ffff00' },
-    { id: 'contact', label: ' <CONTACT> ', color: '#00ff41' },
+    { id: 'hero', label: '> HOME', color: '#0ff' },       // Cyan
+    { id: 'about', label: '> ABOUT', color: '#b000ff' },  // Purple
+    { id: 'projects', label: '> PROJECTS', color: '#ff0055' }, // Red
+    { id: 'skills', label: '> SKILLS', color: '#0ff' },   // Cyan (cycle)
+    { id: 'contact', label: '> CONTACT', color: '#b000ff' }, // Purple (cycle)
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-cyber-darker/50 backdrop-blur-md"
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-cyber-darker/90 backdrop-blur-sm"
          style={{ 
            borderColor: `${currentColor}50`,
            transition: 'border-color 0.5s ease'
@@ -32,8 +32,8 @@ const Navigation: React.FC<NavigationProps> = ({ currentColor, activeSection }) 
           <div className="flex-shrink-0">
             <span className="text-2xl font-cyber font-bold" 
                   style={{
-                    color: `${currentColor}`,
-                    textShadow: `0 0 10px ${currentColor}, 0 0 20px ${currentColor}`
+                    color: '#0ff',
+                    textShadow: '0 0 10px #0ff, 0 0 20px #0ff'
                   }}>
               CYBER.DEV
             </span>
@@ -44,7 +44,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentColor, activeSection }) 
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`font-mono px-3 py-2 text-sm glitch-hover${
+                  className={`font-mono px-3 py-2 text-sm glitch-hover ${
                     activeSection === item.id ? 'font-bold' : ''
                   }`}
                   style={{

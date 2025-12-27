@@ -11,20 +11,24 @@
   left: 0;
   width: 100%;
   height: 100%;
+  opacity: 0.8;
 }
 
+/* Remove hardcoded colors - let inline styles control this */
 .glitch::before {
   left: 2px;
-  text-shadow: -2px 0 #f0f;
+  text-shadow: -2px 0 currentColor;
   clip: rect(24px, 550px, 90px, 0);
   animation: glitch-anim 8s infinite linear alternate-reverse;
+  filter: hue-rotate(90deg);
 }
 
 .glitch::after {
   left: -2px;
-  text-shadow: -2px 0 #0ff;
+  text-shadow: 2px 0 currentColor;
   clip: rect(85px, 550px, 140px, 0);
   animation: glitch-anim 6s infinite linear alternate-reverse;
+  filter: hue-rotate(-90deg);
 }
 
 @keyframes glitch-anim {
@@ -93,160 +97,38 @@
   }
 }
 
-/* Random color glitch hover effect */
+/* NEW POPUP HOVER EFFECT - moves top-left 10px with colored shadow */
 .glitch-hover {
   position: relative;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
-.glitch-hover:hover {
-  animation: glitch-shake-random 1s infinite;
+/* Cyan elements (get purple shadow) */
+.glitch-hover.color-cyan:hover {
+  transform: translate(-10px, -10px);
+  filter: drop-shadow(10px 10px 8px rgba(176, 0, 255, 0.6));
 }
 
-.glitch-hover:hover::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(90deg, transparent, currentColor, transparent);
-  opacity: 0.1;
-  animation: glitch-scan 1.5s infinite;
+/* Purple elements (get red shadow) */
+.glitch-hover.color-purple:hover {
+  transform: translate(-10px, -10px);
+  filter: drop-shadow(10px 10px 8px rgba(255, 0, 85, 0.6));
 }
 
-.glitch-hover:hover::after {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: transparent;
-  animation: glitch-color-shift 1.2s infinite;
-  pointer-events: none;
-  z-index: -1;
+/* Red elements (get cyan shadow) */
+.glitch-hover.color-red:hover {
+  transform: translate(-10px, -10px);
+  filter: drop-shadow(10px 10px 8px rgba(0, 255, 255, 0.6));
 }
 
-@keyframes glitch-shake-random {
-  0%, 100% {
-    transform: translate(0, 0);
-  }
-  10% {
-    transform: translate(-2px, 2px);
-    filter: hue-rotate(90deg);
-  }
-  20% {
-    transform: translate(2px, -2px);
-    filter: hue-rotate(180deg);
-  }
-  30% {
-    transform: translate(-2px, -2px);
-    filter: hue-rotate(270deg);
-  }
-  40% {
-    transform: translate(2px, 2px);
-    filter: hue-rotate(45deg);
-  }
-  50% {
-    transform: translate(-3px, 1px);
-    filter: hue-rotate(135deg);
-  }
-  60% {
-    transform: translate(3px, -1px);
-    filter: hue-rotate(225deg);
-  }
-  70% {
-    transform: translate(-1px, -3px);
-    filter: hue-rotate(315deg);
-  }
-  80% {
-    transform: translate(1px, 3px);
-    filter: hue-rotate(60deg);
-  }
-  90% {
-    transform: translate(-2px, 1px);
-    filter: hue-rotate(300deg);
-  }
+/* Generic hover for elements that need color-specific handling */
+.popup-hover {
+  position: relative;
+  transition: all 0.2s ease;
 }
 
-@keyframes glitch-scan {
-  0% {
-    transform: translateX(-100%);
-    filter: hue-rotate(0deg);
-  }
-  25% {
-    filter: hue-rotate(90deg);
-  }
-  50% {
-    filter: hue-rotate(180deg);
-  }
-  75% {
-    filter: hue-rotate(270deg);
-  }
-  100% {
-    transform: translateX(100%);
-    filter: hue-rotate(360deg);
-  }
-}
-
-@keyframes glitch-color-shift {
-  0% {
-    box-shadow: 
-      2px 2px 0 #ff0055,
-      -2px -2px 0 #00ff41;
-  }
-  25% {
-    box-shadow: 
-      -2px 2px 0 #ffff00,
-      2px -2px 0 #b000ff;
-  }
-  50% {
-    box-shadow: 
-      2px -2px 0 #00ff41,
-      -2px 2px 0 #ff0055;
-  }
-  75% {
-    box-shadow: 
-      -2px -2px 0 #b000ff,
-      2px 2px 0 #ffff00;
-  }
-  100% {
-    box-shadow: 
-      2px 2px 0 #ff0055,
-      -2px -2px 0 #00ff41;
-  }
-}
-
-/* Intense glitch effect for cards */
+/* Card hover effect */
 .glitch-card {
   position: relative;
-}
-
-.glitch-card:hover::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    45deg,
-    transparent 30%,
-    rgba(255, 0, 85, 0.1) 40%,
-    rgba(0, 255, 65, 0.1) 50%,
-    rgba(255, 255, 0, 0.1) 60%,
-    transparent 70%
-  );
-  animation: glitch-sweep 2s infinite;
-  pointer-events: none;
-}
-
-@keyframes glitch-sweep {
-  0% {
-    transform: translateX(-100%) translateY(-100%);
-  }
-  100% {
-    transform: translateX(100%) translateY(100%);
-  }
+  transition: all 0.2s ease;
 }

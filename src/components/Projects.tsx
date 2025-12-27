@@ -16,6 +16,14 @@ const Projects: React.FC<ProjectsProps> = ({ sectionColor }) => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
+  // Helper to get color class for hover effects
+  const getColorClass = (color: string) => {
+    if (color === '#0ff') return 'color-cyan';
+    if (color === '#b000ff') return 'color-purple';
+    if (color === '#ff0055') return 'color-red';
+    return 'color-cyan';
+  };
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -91,7 +99,7 @@ const Projects: React.FC<ProjectsProps> = ({ sectionColor }) => {
           {projects.map((project, index) => (
             <div
               key={project.id}
-              className={`bg-cyber-card/50 backdrop-blur-sm p-8 transition-all duration-500 glitch-hover glitch-card hover:scale-105 border-2 ${
+              className={`bg-cyber-card/50 backdrop-blur-sm p-8 transition-all duration-200 glitch-hover ${getColorClass(sectionColor)} border-2 ${
                 isVisible ? 'opacity-100' : 'opacity-0'
               }`}
               style={{
@@ -107,18 +115,18 @@ const Projects: React.FC<ProjectsProps> = ({ sectionColor }) => {
               }}
             >
               <div className="flex justify-between items-start mb-6">
-                <h3 className="text-xl font-cyber font-bold glitch" 
+                <h3 className="text-xl font-cyber font-bold glitch overflow-hidden" 
                     data-text={project.title}
                     style={{ color: sectionColor }}>
                   {project.title}
                 </h3>
-                <span className="px-3 py-1 text-xs font-mono border animate-pulse"
+                {/* <span className="px-3 py-1 text-xs font-mono border animate-pulse"
                       style={{
                         borderColor: sectionColor,
                         color: sectionColor
                       }}>
                   {project.status}
-                </span>
+                </span> */}
               </div>
               
               <p className="text-sm font-mono mb-6 leading-relaxed"

@@ -80,13 +80,13 @@ const Contact: React.FC<ContactProps> = ({ sectionColor }) => {
                    borderColor: `${sectionColor}80`,
                    boxShadow: `inset 0 0 20px ${sectionColor}20, 0 0 20px ${sectionColor}30`
                  }}>
-              <h3 className="text-xl font-cyber font-bold mb-8 flex items-center"
+              <h3 className="text-xl font-cyber font-bold mb-8 flex items-center overflow-hiddenn"
                   style={{
                     color: sectionColor,
                     textShadow: `0 0 10px ${sectionColor}, 0 0 20px ${sectionColor}`
                   }}>
                 <span style={{ color: sectionColor }} className="mr-2">{'>'}</span>
-                TRANSMISSION_CHANNELS
+                CHANNELS
               </h3>
               
               <div className="space-y-6">

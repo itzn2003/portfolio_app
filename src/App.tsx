@@ -8,27 +8,21 @@ import Contact from './components/Contact';
 import './App.css';
 
 function App() {
-  const [gridOpacity, setGridOpacity] = useState(0.3);
   const [activeSection, setActiveSection] = useState('hero');
 
-  // Define color for each section
+  // Define color for each section - cycling between cyan, purple, red
   const sectionColors: Record<string, string> = {
     hero: '#0ff',      // Cyan
     about: '#b000ff',  // Purple
     projects: '#ff0055', // Red
-    skills: '#ffff00', // Yellow
-    contact: '#00ff41' // Green
+    skills: '#0ff',    // Cyan (cycle repeats)
+    contact: '#b000ff' // Purple (cycle repeats)
   };
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       const windowHeight = window.innerHeight;
-      
-      // Update grid opacity
-      const scrollProgress = Math.min(scrollPosition / (windowHeight * 2), 1);
-      const newOpacity = 0.3 - (scrollProgress * 0.25);
-      setGridOpacity(Math.max(newOpacity, 0.05));
 
       // Detect active section
       if (scrollPosition < windowHeight * 0.7) {
@@ -61,32 +55,6 @@ function App() {
 
   return (
     <div className="App">
-      {/* Global grid overlay that changes color */}
-      <div 
-        className="fixed inset-0 pointer-events-none z-0"
-        style={{ 
-          opacity: gridOpacity,
-          backgroundImage: `
-            linear-gradient(${currentColor} 1px, transparent 1px),
-            linear-gradient(90deg, ${currentColor} 1px, transparent 1px)
-          `,
-          backgroundSize: '50px 50px',
-          transition: 'opacity 0.1s linear, background-image 0.5s ease'
-        }}
-      />
-      
-      {/* Scanline overlay effect with dynamic color */}
-      <div className="scanlines">
-        <style>{`
-          .scanlines::after {
-            background: ${currentColor};
-            box-shadow: 0 0 10px ${currentColor}, 0 0 20px ${currentColor};
-            opacity: 0.3;
-            transition: background 0.5s ease, box-shadow 0.5s ease;
-          }
-        `}</style>
-      </div>
-      
       {/* Navigation with dynamic color */}
       <Navigation currentColor={currentColor} activeSection={activeSection} />
       
