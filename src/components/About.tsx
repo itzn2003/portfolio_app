@@ -79,7 +79,7 @@ const About: React.FC = () => {
 
           {/* Image/Visual Element */}
           <div className="relative">
-            <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg overflow-hidden shadow-card border-4 border-dashed border-[#8b00ff]">
+            <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg overflow-hidden shadow-card border-4 border border-[#8b00ff] clipped-corners">
               {/* Placeholder for profile image or visual */}
               <div className="w-full h-full flex items-center justify-center">
                 <div className="text-center">
