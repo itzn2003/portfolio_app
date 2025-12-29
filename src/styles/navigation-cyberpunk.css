@@ -1,0 +1,43 @@
+/* Cyberpunk Navigation Styles */
+
+.nav-item {
+  position: relative;
+  background: transparent;
+  clip-path: polygon(
+    10px 0,
+    100% 0,
+    100% calc(100% - 10px),
+    calc(100% - 10px) 100%,
+    0 100%,
+    0 10px
+  );
+  border: none;
+}
+
+/* Active nav item with clipped corners - clean diagonal cuts */
+.nav-item-active {
+  background: #FCF000;
+  color: black !important;
+  clip-path: polygon(
+    10px 0,
+    100% 0,
+    100% calc(100% - 10px),
+    calc(100% - 10px) 100%,
+    0 100%,
+    0 10px
+  );
+  position: relative;
+}
+
+/* Hover effect for non-active items */
+.nav-item:not(.nav-item-active):hover {
+  background: rgba(252, 240, 0, 0.1);
+  clip-path: polygon(
+    10px 0,
+    100% 0,
+    100% calc(100% - 10px),
+    calc(100% - 10px) 100%,
+    0 100%,
+    0 10px
+  );
+}

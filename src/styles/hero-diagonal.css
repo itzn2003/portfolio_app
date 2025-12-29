@@ -1,0 +1,18 @@
+
+
+/* Pattern overlay - only visible on yellow background */
+.dot-grid-overlay {
+  content: "";
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(circle, #00000038 1px, transparent 1px),
+    radial-gradient(circle, #00000038 1px, transparent 1px) 10px 10px,
+    linear-gradient(90deg, rgba(0, 0, 0, 0.0) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(0, 0, 0, 0.0) 1px, transparent 1px);
+  background-size: 20px 20px;
+  z-index: 1;
+}

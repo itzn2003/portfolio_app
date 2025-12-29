@@ -1,135 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap');
+
 @import "tailwindcss";
 
-* Base styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
-body {
-  margin: 0;
-  font-family: 'Orbitron', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #0a0a0f;
-  color: #0ff;
+/* Base styles */
+html {
   overflow-x: hidden;
 }
 
-code {
-  font-family: 'Share Tech Mono', source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #ffffff;
+  color: #000000;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 12px;
-}
-
-::-webkit-scrollbar-track {
-  background: #0a0a0f;
-  border-left: 1px solid rgba(0, 255, 255, 0.2);
-}
-
-::-webkit-scrollbar-thumb {
-  background: #0ff;
-  box-shadow: 0 0 10px #0ff;
-  border-radius: 0;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #0ff;
-  box-shadow: 0 0 20px #0ff;
-}
-
-/* Firefox scrollbar */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #0ff #0a0a0f;
-}
-
-/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
 /* Selection color */
 ::selection {
-  background-color: rgba(0, 255, 255, 0.3);
-  color: #0ff;
+  background-color: rgba(252, 240, 0, 0.3);
+  color: #000000;
 }
 
-::-moz-selection {
-  background-color: rgba(0, 255, 255, 0.3);
-  color: #0ff;
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-/* Remove default button styles */
-button {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  font-family: inherit;
+::-webkit-scrollbar-track {
+  background: #f3f4f6;
 }
 
-/* Remove default link styles */
-a {
-  color: inherit;
-  text-decoration: none;
+::-webkit-scrollbar-thumb {
+  background: #6b7280;
+  border-radius: 4px;
 }
 
-/* Input and textarea styles */
-input,
-textarea {
+::-webkit-scrollbar-thumb:hover {
+  background: #4b5563;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #6b7280 #f3f4f6;
+}
+
+/* Focus styles */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #FCF000;
+  outline-offset: 2px;
+}
+
+/* Keyframe Animations */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom utility classes - these extend Tailwind */
+.bg-cyber-yellow {
+  background-color: #FCF000;
+}
+
+.bg-cyber-purple {
+  background-color: #8b00ff;
+}
+
+.text-cyber-yellow {
+  color: #FCF000;
+}
+
+.border-cyber-yellow {
+  border-color: #FCF000;
+}
+
+.shadow-card {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.shadow-card-hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+.font-display {
+  font-family: 'Rajdhani', sans-serif;
+}
+
+.font-mono {
   font-family: 'Share Tech Mono', monospace;
 }
 
-input::placeholder,
-textarea::placeholder {
-  color: rgba(0, 255, 255, 0.4);
-}
-
-/* Ensure sections take full viewport */
-section {
-  min-height: 100vh;
-  width: 100%;
-}
-
-/* App container */
-.App {
-  position: relative;
-  min-height: 100vh;
-  width: 100%;
-}
-
-/* Prevent text selection on certain elements */
-.glitch,
-.neon-text,
-button {
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-}
-
-/* Ensure proper layering */
-main {
-  position: relative;
-  z-index: 10;
-}
-
-/* Remove outline on focus for styled elements */
-button:focus,
-a:focus {
-  outline: none;
-}
-
-/* Add visible focus for accessibility */
-button:focus-visible,
-a:focus-visible {
-  outline: 2px solid #0ff;
-  outline-offset: 2px;
+.clipped-corners {
+  clip-path: polygon(
+    100px 0,
+    100% 0,
+    100% calc(100% - 100px),
+    calc(100% - 100px) 100%,
+    0 100%,
+    0 100px
+  );
 }
