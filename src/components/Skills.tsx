@@ -1,10 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-
-interface Skill {
-  name: string;
-  level: number;
-  category: string;
-}
+import { skills, tools, skillsContent } from '../content';
 
 const Skills: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -31,20 +26,7 @@ const Skills: React.FC = () => {
     };
   }, []);
 
-  const skills: Skill[] = [
-    { name: 'React / Next.js', level: 95, category: 'Frontend' },
-    { name: 'TypeScript', level: 90, category: 'Frontend' },
-    { name: 'Tailwind CSS', level: 92, category: 'Frontend' },
-    { name: 'Node.js', level: 88, category: 'Backend' },
-    { name: 'Python', level: 85, category: 'Backend' },
-    { name: 'PostgreSQL', level: 87, category: 'Database' },
-    { name: 'MongoDB', level: 83, category: 'Database' },
-    { name: 'Docker', level: 80, category: 'DevOps' },
-    { name: 'AWS', level: 78, category: 'DevOps' },
-  ];
-
-  const categories = ['Frontend', 'Backend', 'Database', 'DevOps'];
-  const tools = ['Git', 'REST APIs', 'GraphQL', 'CI/CD', 'Agile', 'TDD', 'Microservices', 'WebSocket', 'Redis'];
+  const categories = ['Frontend', 'Backend', 'Database', 'Mobile'] as const;
 
   return (
     <section
@@ -57,13 +39,13 @@ const Skills: React.FC = () => {
       }`}>
         <div className="mb-16 text-center">
           <span className="inline-block px-3 py-1 bg-cyber-yellow text-black text-xs font-mono font-medium tracking-wider mb-4">
-            EXPERTISE
+            {skillsContent.badge}
           </span>
           <h2 className="text-4xl md:text-5xl font-display font-bold text-black mb-4">
-            Skills & Technologies
+            {skillsContent.heading}
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Proficient in modern web technologies and industry best practices
+            {skillsContent.subheading}
           </p>
         </div>
         
@@ -118,7 +100,7 @@ const Skills: React.FC = () => {
         <div className="bg-white p-8 border border-gray-200 shadow-card">
           <h3 className="text-xl font-display font-bold mb-6 text-black flex items-center">
             <span className="inline-block w-1 h-6 bg-cyber-yellow mr-3"></span>
-            Tools & Methodologies
+            {skillsContent.toolsSectionHeading}
           </h3>
           
           <div className="flex flex-wrap gap-3">

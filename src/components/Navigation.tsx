@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { navigationItems, personalInfo } from '../content';
 
 interface NavigationProps {
   activeSection: string;
@@ -23,14 +24,6 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection }) => {
     }
   };
 
-  const navItems = [
-    { id: 'hero', label: 'HOME' },
-    { id: 'about', label: 'ABOUT' },
-    { id: 'projects', label: 'PROJECTS' },
-    { id: 'skills', label: 'SKILLS' },
-    { id: 'contact', label: 'CONTACT' },
-  ];
-
   return (
     <nav 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -45,14 +38,14 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection }) => {
               onClick={() => scrollToSection('hero')}
               className="text-2xl font-display font-bold text-black hover:text-gray-700 transition-colors"
             >
-              ZAH
+              {personalInfo.initials}
             </button>
           </div>
           
           {/* Navigation Links */}
           <div className="hidden md:block">
             <div className="flex items-center">
-              {navItems.map((item) => (
+              {navigationItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}

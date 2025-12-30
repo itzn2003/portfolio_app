@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { heroContent } from '../content';
 
 const Hero: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -13,21 +14,21 @@ const Hero: React.FC = () => {
       className="hero-section min-h-screen flex items-center justify-center relative overflow-hidden dot-grid-overlay"
     >
     
-      <div className={`relative z-10 text-center p-4 max-w-5xl mx-auto transition-all duration-1000 bg-cyber-yellow clipped-corners  ${
+      <div className={`relative z-10 text-center p-4 max-w-5xl mx-auto transition-all duration-1000 bg-cyber-yellow clipped-corners ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
       }`}>
         <div className={"mb-6"}>
           <span className="inline-block px-4 py-2 bg-cyber-purple text-white text-sm font-medium font-mono tracking-wider">
-            FULL STACK DEVELOPER
+            {heroContent.badge}
           </span>
         </div>
         
         <h1 className="text-6xl md:text-8xl font-display font-bold mb-6 text-black">
-          ZAYN A. HASHIM
+          {heroContent.name}
         </h1>
         
         <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed">
-          Building scalable, modern web applications with clean code and thoughtful design
+          {heroContent.tagline}
         </p>
         
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
@@ -35,16 +36,16 @@ const Hero: React.FC = () => {
             onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
             className="btn"
           >
-            <span className="btn__glitch">View Projects</span>
-            View Projects
+            <span className="btn__glitch">{heroContent.primaryCTA}</span>
+            {heroContent.primaryCTA}
           </button>
           
           <button
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             className="btn btn-secondary"
           >
-            <span className="btn__glitch">Contact Me</span>
-            Contact Me
+            <span className="btn__glitch">{heroContent.secondaryCTA}</span>
+            {heroContent.secondaryCTA}
           </button>
         </div>
       </div>

@@ -1,13 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  tech: string[];
-  images: string[];
-  link?: string;
-}
+import { projects, projectsContent } from '../content';
 
 const Projects: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -35,33 +27,6 @@ const Projects: React.FC = () => {
     };
   }, []);
 
-  const projects: Project[] = [
-    {
-      id: 1,
-      title: 'E-Commerce Platform',
-      description: 'A full-stack e-commerce solution with real-time inventory management, secure payment processing, and an intuitive admin dashboard. Built to handle high traffic with optimized performance.',
-      tech: ['React', 'TypeScript', 'Node.js', 'PostgreSQL', 'Stripe'],
-      images: ['/images/img1.png', '/images/img2.png', '/images/img3.png'],
-      link: 'https://github.com'
-    },
-    {
-      id: 2,
-      title: 'Task Management App',
-      description: 'Collaborative project management tool featuring real-time updates, team collaboration, custom workflows, and comprehensive analytics for tracking productivity.',
-      tech: ['Next.js', 'MongoDB', 'Socket.io', 'Tailwind CSS'],
-      images: ['/images/img1.png', '/images/img2.png', '/images/img3.png'],
-      link: 'https://github.com'
-    },
-    {
-      id: 3,
-      title: 'AI Chat Application',
-      description: 'Real-time chat application with AI-powered message suggestions, sentiment analysis, and smart notifications. Features end-to-end encryption for secure communication.',
-      tech: ['React', 'WebSocket', 'Python', 'TensorFlow', 'Redis'],
-      images: ['/images/img1.png', '/images/img2.png', '/images/img3.png'],
-      link: 'https://github.com'
-    }
-  ];
-
   const nextImage = (projectId: number, imageCount: number) => {
     setCurrentImageIndex(prev => ({
       ...prev,
@@ -87,13 +52,13 @@ const Projects: React.FC = () => {
       }`}>
         <div className="mb-16 text-center">
           <span className="inline-block px-3 py-1 bg-cyber-yellow text-black text-xs font-mono font-medium tracking-wider mb-4">
-            PORTFOLIO
+            {projectsContent.badge}
           </span>
           <h2 className="text-4xl md:text-5xl font-display font-bold text-black mb-4">
-            Featured Projects
+            {projectsContent.heading}
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            A selection of my recent work, showcasing expertise in modern web development
+            {projectsContent.subheading}
           </p>
         </div>
         
@@ -133,30 +98,35 @@ const Projects: React.FC = () => {
                   </div>
                   
                   <div className="flex flex-wrap gap-4 mt-8">
-                    <button 
-                      className="btn"
-                      onClick={() => window.open(project.link, '_blank')}
-                    >
-                      <span className="btn__glitch">View Project</span>
-                      View Project
-                    </button>
-                    <button 
-                      className="btn btn-secondary"
-                    >
-                      <span className="btn__glitch">Live Demo</span>
-                      Live Demo
-                    </button>
+                    {project.githubLink && (
+                      <button 
+                        className="btn"
+                        onClick={() => window.open(project.githubLink, '_blank')}
+                      >
+                        <span className="btn__glitch">{project.githubButtonText || 'View Project'}</span>
+                        {project.githubButtonText || 'View Project'}
+                      </button>
+                    )}
+                    {project.liveLink && (
+                      <button 
+                        className="btn btn-secondary"
+                        onClick={() => window.open(project.liveLink, '_blank')}
+                      >
+                        <span className="btn__glitch">{project.liveButtonText || 'Live Demo'}</span>
+                        {project.liveButtonText || 'Live Demo'}
+                      </button>
+                    )}
                   </div>
                 </div>
 
-                {/* Image Section - 1/3 width */}
-                <div className="md:w-1/3 relative border-t md:border-t-0 md:border-l border-gray-200">
+                {/* Image Section - 1/2 width */}
+                <div className="md:w-1/2 relative border-t md:border-t-0 md:border-l border-gray-200">
                   <div className="relative h-64 md:h-full min-h-[400px] overflow-hidden bg-gray-50 border-4 border-dashed border-[#8b00ff]">
                     {/* Image Display */}
                     <img
                       src={project.images[currentImageIndex[project.id] || 0]}
                       alt={`${project.title} screenshot ${(currentImageIndex[project.id] || 0) + 1}`}
-                      className="w-full h-full object-cover transition-opacity duration-300 "
+                      className="w-full h-full object-cover transition-opacity duration-300"
                       onError={(e) => {
                         e.currentTarget.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="600"%3E%3Crect width="400" height="600" fill="%23f3f4f6"%3E%3C/rect%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" fill="%236b7280" font-family="monospace" font-size="16"%3EProject Image%3C/text%3E%3C/svg%3E';
                       }}
@@ -203,8 +173,8 @@ const Projects: React.FC = () => {
         
         <div className="mt-16 text-center">
           <button className="btn">
-            <span className="btn__glitch">View All Projects</span>
-            View All Projects
+            <span className="btn__glitch">{projectsContent.viewAllButtonText}</span>
+            {projectsContent.viewAllButtonText}
           </button>
         </div>
       </div>

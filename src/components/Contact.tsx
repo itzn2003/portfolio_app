@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { contactInfo, socialLinks, contactContent, contactFormFields } from '../content';
 
 const Contact: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -42,33 +43,32 @@ const Contact: React.FC = () => {
     });
   };
 
-  const contactInfo = [
-    {
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-        </svg>
-      ),
-      label: 'Email',
-      value: 'zayn.hashim@example.com'
-    },
-    {
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-        </svg>
-      ),
-      label: 'Location',
-      value: 'San Francisco, CA'
-    },
-  ];
-
-  const socialLinks = [
-    { name: 'GitHub', handle: 'zaynahashim', url: 'https://github.com' },
-    { name: 'LinkedIn', handle: 'zaynahashim', url: 'https://linkedin.com' },
-    { name: 'Twitter', handle: '@zayn_hashim', url: 'https://twitter.com' },
-  ];
+  // Icon components based on type
+  const getIcon = (iconType: string) => {
+    switch (iconType) {
+      case 'email':
+        return (
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+        );
+      case 'location':
+        return (
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+        );
+      case 'phone':
+        return (
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+          </svg>
+        );
+      default:
+        return null;
+    }
+  };
 
   return (
     <section
@@ -81,13 +81,13 @@ const Contact: React.FC = () => {
       }`}>
         <div className="mb-16 text-center">
           <span className="inline-block px-3 py-1 bg-cyber-yellow text-black text-xs font-mono font-medium tracking-wider mb-4">
-            GET IN TOUCH
+            {contactContent.badge}
           </span>
           <h2 className="text-4xl md:text-5xl font-display font-bold text-black mb-4">
-            Let's Work Together
+            {contactContent.heading}
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Have a project in mind? Feel free to reach out and let's discuss how we can collaborate
+            {contactContent.subheading}
           </p>
         </div>
         
@@ -97,14 +97,14 @@ const Contact: React.FC = () => {
             <div className="bg-gray-50 p-8 border border-gray-200">
               <h3 className="text-xl font-display font-bold mb-8 text-black flex items-center">
                 <span className="inline-block w-1 h-6 bg-cyber-yellow mr-3"></span>
-                Contact Information
+                {contactContent.contactInfoHeading}
               </h3>
               
               <div className="space-y-6">
                 {contactInfo.map((info, index) => (
                   <div key={index} className="flex items-start">
                     <div className="text-black mr-4 mt-1">
-                      {info.icon}
+                      {getIcon(info.icon)}
                     </div>
                     <div>
                       <p className="text-sm text-gray-500 mb-1">{info.label}</p>
@@ -118,7 +118,7 @@ const Contact: React.FC = () => {
             <div className="bg-gray-50 p-8 border border-gray-200">
               <h3 className="text-xl font-display font-bold mb-8 text-black flex items-center">
                 <span className="inline-block w-1 h-6 bg-cyber-yellow mr-3"></span>
-                Social Links
+                {contactContent.socialLinksHeading}
               </h3>
               
               <div className="space-y-4">
@@ -147,52 +147,52 @@ const Contact: React.FC = () => {
           <div className="bg-gray-50 p-8 border border-gray-200">
             <h3 className="text-xl font-display font-bold mb-8 text-black flex items-center">
               <span className="inline-block w-1 h-6 bg-cyber-yellow mr-3"></span>
-              Send a Message
+              {contactContent.formHeading}
             </h3>
             
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Name
+                  {contactFormFields.name.label}
                 </label>
                 <input
-                  type="text"
+                  type={contactFormFields.name.type}
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
                   className="w-full px-4 py-3 bg-white border border-gray-200 text-black focus:outline-none focus:border-black transition-colors"
-                  placeholder="Your name"
-                  required
+                  placeholder={contactFormFields.name.placeholder}
+                  required={contactFormFields.name.required}
                 />
               </div>
               
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Email
+                  {contactFormFields.email.label}
                 </label>
                 <input
-                  type="email"
+                  type={contactFormFields.email.type}
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
                   className="w-full px-4 py-3 bg-white border border-gray-200 text-black focus:outline-none focus:border-black transition-colors"
-                  placeholder="your.email@example.com"
-                  required
+                  placeholder={contactFormFields.email.placeholder}
+                  required={contactFormFields.email.required}
                 />
               </div>
               
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Message
+                  {contactFormFields.message.label}
                 </label>
                 <textarea
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  rows={6}
+                  rows={contactFormFields.message.rows}
                   className="w-full px-4 py-3 bg-white border border-gray-200 text-black focus:outline-none focus:border-black transition-colors resize-none"
-                  placeholder="Tell me about your project..."
-                  required
+                  placeholder={contactFormFields.message.placeholder}
+                  required={contactFormFields.message.required}
                 />
               </div>
               
@@ -200,8 +200,8 @@ const Contact: React.FC = () => {
                 type="submit"
                 className="btn w-full"
               >
-                <span className="btn__glitch">Send Message</span>
-                Send Message
+                <span className="btn__glitch">{contactContent.submitButtonText}</span>
+                {contactContent.submitButtonText}
               </button>
             </form>
           </div>

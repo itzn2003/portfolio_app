@@ -5,6 +5,7 @@ import About from './components/About';
 import Projects from './components/Projects';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
+import { footerContent } from './content';
 import './App.css';
 
 function App() {
@@ -60,10 +61,10 @@ function App() {
       <footer className="relative bg-gray-50 border-t border-gray-200 py-8">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <p className="text-sm text-gray-600">
-            © 2024 Zayn A. Hashim. All rights reserved.
+            {footerContent.copyright}
           </p>
           <p className="text-xs text-gray-400 mt-2">
-            Built with React, TypeScript & Tailwind CSS
+            {footerContent.builtWith}
           </p>
         </div>
       </footer>
